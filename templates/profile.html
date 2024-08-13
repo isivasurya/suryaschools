@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-info bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Surya Schools</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                </svg>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Student: {{ session["sname"] }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('studenthome') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="container mt-5 d-flex justify-content-center align-items-center mb-5" >
+        <div class="card" style="width: 100%; max-width: 500px;">
+            <div class="card-body">
+                <h5 class="card-title">Roll Number: {{ student.srollnum }}</h5>
+                <p class="card-text"><strong>Name:</strong> {{ student.sname }}</p>
+                <p class="card-text"><strong>Age:</strong> {{ student.sage }}</p>
+                <p class="card-text"><strong>Email:</strong> {{ student.semail }}</p>
+                <p class="card-text"><strong>Mobile:</strong> {{ student.smobile }}</p>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#updateModal">Update</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Update Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url_for('studupdate') }}">
+                        <div class="form-group">
+                            <label for="srollnum">Roll Number</label>
+                            <input type="text" class="form-control" name="srollnum" value="{{ student.srollnum }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="sname">Name</label>
+                            <input type="text" class="form-control" name="sname" value="{{ student.sname }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sage">Age</label>
+                            <input type="number" class="form-control" name="sage" value="{{ student.sage }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="semail">Email</label>
+                            <input type="email" class="form-control" name="semail" value="{{ student.semail }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="smobile">Mobile</label>
+                            <input type="tel" class="form-control" name="smobile" value="{{ student.smobile }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-info bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Surya Schools</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <!-- Optional: Custom icon SVG or text -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                </svg>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto mr-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+
+                <!-- Students Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Students
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="studentsDropdown">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#StudregisterModal"> Students Registration</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#StudloginModal"> Student Login</a>
+                    </div>
+                </li>
+
+                <!-- Admin Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#AdminregisterModal"> Admin Registration</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#AdminloginModal"> Admin Login</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

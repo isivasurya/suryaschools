@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-info bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Surya Schools</a>
+        <!-- Navbar toggler for mobile view -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-list" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+</svg></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin: {{ session["aname"] }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('studlist') }}">Student list</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="text-center text-success">Welcome, {{ admin.aname }}</h1>
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered text-center table-primary table-hover">
+            <thead>
+                <tr>
+                    <th colspan="2">Admin Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Admin Name</td>
+                    <td>{{ admin.aname }}</td>
+                </tr>
+                <tr>
+                    <td>Admin Email</td>
+                    <td>{{ admin.amail }}</td>
+                </tr>
+                <!-- Add more fields as necessary -->
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+</div>
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="bg-info p-4 rounded">
+                <h3 class="text-center text-danger">Add Event</h3>
+                <form action="{{ url_for('add_event') }}" method="POST">
+                    <div class="form-group">
+                        <label for="title">Event Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Event title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Event Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Event Date</label>
+                        <input type="date" class="form-control" id="date" name="evntdate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Event Location</label>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Event Location" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add Event</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

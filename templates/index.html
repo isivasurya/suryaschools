@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+            <div class="alert alert-{{category}}">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    <h1 class="text-header text-primary text-italic">Welcome to Surya Schools</h1>
+
+    <p style="color:red">Queries regarding admission ?!</p>
+    <button type="submit" class="btn btn-primary">Contact us</button>
+
+
+    <div class="modal fade" id="StudregisterModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Student Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="sname" placeholder="Enter name" required>
+                        </div>
+                        <div class="form-group">
+                            <label >Age</label>
+                            <input type="number" class="form-control" name="sage" placeholder="Enter age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="semail" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="spass" placeholder="Enter password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile</label>
+                            <input type="tel" class="form-control" name="smobile" placeholder="Enter mobile number" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="regn">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Students login modal-->
+
+    <div class="modal fade" id="StudloginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Student Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" name="semail" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" name="spass" placeholder="Enter password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="slogin"> Student Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Admin registration -->
+    <div class="modal fade" id="AdminregisterModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Admin Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="aname" placeholder="Enter name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="amail" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="apass" placeholder="Enter password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="admregn">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Admin login modal -->
+
+    <div class="modal fade" id="AdminloginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Admin Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="admEmail" name="amail" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" class="form-control" id="admPassword" name="apass" placeholder="Enter password" required>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary" name="admlogin">Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<br>
+<br>
+
+ <div class="row mb-4 mt-5">
+            <div class="col-md-6">
+                <h2 class="text-primary">Our Achievements</h2>
+                <ul style="color:white">
+                    <li>Top School in National Science Fair 2023</li>
+                    <li>Winner of Inter-School Sports Championship 2022</li>
+                    <li>Best Performing School in Arts and Culture 2021</li>
+                    <li>Outstanding Academic Achievement Awards for 2020-2021</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ url_for('static', filename='music-festival.jpg') }}" class="card-img-top" alt="Music Festival" style="height:250px">
+                    <div class="card-body">
+                        <h5 class="card-title">Music Festival</h5>
+                        <p class="card-text">Join us for an unforgettable evening filled with melodious performances by talented students and guest artists. Date: September 15, 2024.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ url_for('static', filename='sports-day.jpg') }}" class="card-img-top" alt="Sports Day" style="height:250px">
+                    <div class="card-body">
+                        <h5 class="card-title">Sports Day</h5>
+                        <p class="card-text">A day filled with exciting sports events and competitions. Watch our students showcase their athletic skills and sportsmanship. Date: October 10, 2024.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ url_for('static', filename='dance.jpg') }}" class="card-img-top" alt="Dance Event" style="height:250px">
+                    <div class="card-body">
+                        <h5 class="card-title">Dance Event</h5>
+                        <p class="card-text">Experience an evening of vibrant dance performances showcasing diverse styles and cultural expressions. Date: November 20, 2024.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
